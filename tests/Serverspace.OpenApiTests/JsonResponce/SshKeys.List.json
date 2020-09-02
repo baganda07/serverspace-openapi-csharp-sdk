@@ -1,0 +1,12 @@
+﻿[
+  {
+    "id": 1,
+    "name": "Test Ssh-Key 1",
+    "public_key": "---- BEGIN SSH2 PUBLIC KEY ----\r\nComment: \"rsa-key-20190927\"\r\nAAAAB3NzaC1yc2EAAAABJQAAAQEAkEWseYLYVW4wpdNwWNXtoz84r5sYZ2FBXJ5M\r\nsfibRpJ47o/2z6VcdYnbhhJ/J2dE9AlDCGgleXilnxc9UKRgWXi3NHMmDNFi1kR5\r\nJ6xcY3Tv0ly6w0if+QMJULnoixgPulg93JanVxCvAFy4sE8kwQqTQrYio3UJbiQ5\r\nlX0kEkaWMDM/p8Z97d5izVN+PoMjW0bZdK17VAS90cf+FKFL6cs5VKrY/d7OMfxi\r\nqNeEs+vzYPK2VT4aiLLzryTIiDgG9CjsPtRoMxSihw5tdIw3mhsFdZkKdaJDfank\r\noQ3Y6P4XFPbzwOfDLwIRkDd7Gbh7jRp+4SeVVsBP9AbBR/kv3w==\r\n---- END SSH2 PUBLIC KEY ----"
+  },
+  {
+    "id": 2,
+    "name": "Test Ssh-Key 2",
+    "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEA4pO1k8IU4JYNASJEGWR/3ECARddXiKLePNN8hIGaqT2grSpFIRULrRhL4qFIQOUB5m9qy0ZjazHoBUzaK/m+nrmkfamF90sKMN5KHRCUMbBOixS0Uc5r/HK7SDDnozjNSFDWscfpMuZfzSXQ512HRZ0ZN+fmXl9Ku87SE9fhrir7injfTVvF/VYfz9W1CvIwN8D6iTBo2zpI1xVfX1tuL2akME4ZBvH9+xVV7Ejw4ad6e/Z1p8g/pYzcmoMvng8qhrBMQaNSq1fTHN+YrJmr86k0pFpKbbSEksOLmV2piTBxqWqR00faRFgvG7HJDtoVAKSdpREUyDvDYeyUGyJwJw== rsa-key-20200730"
+  }
+]
