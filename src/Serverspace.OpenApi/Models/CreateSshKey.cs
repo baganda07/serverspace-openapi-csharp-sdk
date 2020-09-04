@@ -2,18 +2,15 @@
 
 namespace Serverspace.OpenApi.Models
 {
-    public class SshKey
+    public class CreateSshKey
     {
-        public int Id { get; }
-
         public string Name { get; }
 
         [JsonProperty("public_key")]
         public string PublicKey { get; }
 
-        public SshKey(int id, string name, string publicKey)
+        public CreateSshKey(string name, string publicKey)
         {
-            Id = id;
             Name = name;
             PublicKey = publicKey;
         }

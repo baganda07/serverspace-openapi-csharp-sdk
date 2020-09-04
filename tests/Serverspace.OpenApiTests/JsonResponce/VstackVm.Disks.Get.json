@@ -1,0 +1,18 @@
+﻿[
+  {
+    "location_id": 1,
+    "vm_id": "12345",
+    "id": 1,
+    "name": "Disk 1",
+    "size_mb": 10240,
+    "created_at": "2020-08-07T08:36:03.975Z"
+  },
+  {
+    "location_id": 1,
+    "vm_id": "12345",
+    "id": 2,
+    "name": "Disk 2",
+    "size_mb": 51200,
+    "created_at": "2020-08-08T10:47:04.215Z"
+  }
+]

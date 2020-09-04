@@ -1,0 +1,8 @@
+﻿{
+  "location_id": 1,
+  "vm_id": "12345",
+  "id": 1,
+  "name": "Disk 1",
+  "size_mb": 10240,
+  "created_at": "2020-08-07T08:36:03.975Z"
+}

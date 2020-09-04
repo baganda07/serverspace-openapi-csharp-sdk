@@ -1,0 +1,22 @@
+﻿[
+  {
+    "id": 1,
+    "os_family_id": "CentOS",
+    "price": 5,
+    "cpu": 1,
+    "ram_mb": 1024,
+    "hdd_mb": 5120,
+    "free_out_traffic_gb": 1024,
+    "vstack_location_id": 5
+  },
+  {
+    "id": 2,
+    "os_family_id": "Ubuntu",
+    "price": 10,
+    "cpu": 2,
+    "ram_mb": 10240,
+    "hdd_mb": 61440,
+    "free_out_traffic_gb": 20480,
+    "vstack_location_id": 6
+  }
+]

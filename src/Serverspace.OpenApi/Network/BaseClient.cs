@@ -51,6 +51,15 @@ namespace Serverspace.OpenApi.Network
             return await HandleResponseAsync<TOut>(responce).ConfigureAwait(false);
         }
 
+        public async Task<ApiResponse<TOut>> SendPostRequestAsync<TOut>(string relativeUri)
+        {
+            var uri = new Uri(_uri, relativeUri);
+            var request = new HttpRequestMessage(HttpMethod.Post, uri);
+
+            var responce = await _httpClient.SendAsync(request).ConfigureAwait(false);
+            return await HandleResponseAsync<TOut>(responce).ConfigureAwait(false);
+        }
+
         public async Task<ApiResponse<TOut>> SendPutRequestAsync<TIn, TOut>(string relativeUri, TIn body)
         {
             var uri = new Uri(_uri, relativeUri);
@@ -62,13 +71,13 @@ namespace Serverspace.OpenApi.Network
             return await HandleResponseAsync<TOut>(responce).ConfigureAwait(false);
         }
 
-        public async Task<ApiResponse<TOut>> SendDeleteRequestAsync<TIn, TOut>(string relativeUri)
+        public async Task SendDeleteRequestAsync(string relativeUri)
         {
             var uri = new Uri(_uri, relativeUri);
             var request = new HttpRequestMessage(HttpMethod.Delete, uri);
             var response = await _httpClient.SendAsync(request).ConfigureAwait(false);
 
-            return await HandleResponseAsync<TOut>(response).ConfigureAwait(false);
+            await HandleResponseAsync<ApiResponse<object>>(response).ConfigureAwait(false);
         }
 
         private static async Task<ApiResponse<TOut>> HandleResponseAsync<TOut>(HttpResponseMessage response)
@@ -109,5 +118,7 @@ namespace Serverspace.OpenApi.Network
                 throw;
             }
         }
+
+
     }
 }

@@ -1,0 +1,8 @@
+﻿{
+  "location_id": 1,
+  "vm_id": "321",
+  "id": 2,
+  "network_id": "1",
+  "mac": "ca:06:5d:07:84:4e",
+  "ip_address": "10.0.0.1"
+}

@@ -1,0 +1,14 @@
+﻿[
+  {
+    "id": 5,
+    "tech_title": "AM2",
+    "min_disk_size_mb": 10240,
+    "max_disk_size_mb": 1024000
+  },
+  {
+    "id": 6,
+    "tech_title": "NJ3",
+    "min_disk_size_mb": 1024000,
+    "max_disk_size_mb": 2048000
+  }
+]

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Serverspace.OpenApi.Models
+﻿namespace Serverspace.OpenApi.Models
 {
     public class ProjectDetailing
     {

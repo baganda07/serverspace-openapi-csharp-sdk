@@ -1,0 +1,30 @@
+﻿[
+  {
+    "location_id": 1,
+    "id": 1,
+    "type": "Ubuntu",
+    "os_version": "16.0",
+    "architecture": "X64",
+    "allow_ssh_keys": true,
+    "hdd_min": 5120,
+    "hdd_max": 10240,
+    "cpu_min": 1,
+    "cpu_max": 2,
+    "ram_min": 512,
+    "ram_max": 1024
+  },
+  {
+    "location_id": 3,
+    "id": 2,
+    "type": "CentOs",
+    "os_version": "18.0",
+    "architecture": "X64",
+    "allow_ssh_keys": false,
+    "hdd_min": 51200,
+    "hdd_max": 102400,
+    "cpu_min": 3,
+    "cpu_max": 4,
+    "ram_min": 5120,
+    "ram_max": 10240
+  }
+]
