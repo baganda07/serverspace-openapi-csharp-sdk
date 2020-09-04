@@ -45,7 +45,7 @@ namespace Serverspace.OpenApi.Network
             var uri = new Uri(_uri, relativeUri);
             var request = new HttpRequestMessage(HttpMethod.Post, uri);
             if (body != null)
-                request.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8);
+                request.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
 
             var responce = await _httpClient.SendAsync(request).ConfigureAwait(false);
             return await HandleResponseAsync<TOut>(responce).ConfigureAwait(false);
@@ -65,7 +65,7 @@ namespace Serverspace.OpenApi.Network
             var uri = new Uri(_uri, relativeUri);
             var request = new HttpRequestMessage(HttpMethod.Put, uri);
             if (body != null)
-                request.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8);
+                request.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
 
             var responce = await _httpClient.SendAsync(request).ConfigureAwait(false);
             return await HandleResponseAsync<TOut>(responce).ConfigureAwait(false);
@@ -87,6 +87,7 @@ namespace Serverspace.OpenApi.Network
                 switch (response.StatusCode)
                 {
                     case HttpStatusCode.OK:
+                    case HttpStatusCode.Created:
                         {
                             var content = string.Empty;
                             if (response.Content != null)
@@ -108,7 +109,7 @@ namespace Serverspace.OpenApi.Network
 
                     default:
                         {
-                            throw new ApiException("The server return unexpected http responce status", response.StatusCode);
+                            throw new ApiException($"The server return unexpected http responce status {response.StatusCode}", response.StatusCode);
                         }
                 }
             }

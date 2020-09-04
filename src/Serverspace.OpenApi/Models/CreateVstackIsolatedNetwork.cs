@@ -17,9 +17,9 @@ namespace Serverspace.OpenApi.Models
         public string IpV4Address { get; }
 
         [JsonProperty("mask")]
-        public string IpV4Mask { get; }
+        public int IpV4Mask { get; }
 
-        public CreateVstackIsolatedNetwork(int locationId, string name, string description, string ipV4Address, string ipV4Mask)
+        public CreateVstackIsolatedNetwork(int locationId, string name, string description, string ipV4Address, int ipV4Mask)
         {
             LocationId = locationId;
             Name = name;

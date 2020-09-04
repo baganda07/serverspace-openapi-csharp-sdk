@@ -171,7 +171,7 @@ namespace Serverspace.OpenApi.Network
         public async Task<ICollection<VstackVmDisk>> GetVstackVmDisks(int vmId)
         {
             var endpoint = string.Format(EndpointVstackVmDisks, vmId);
-            var responce = await Client.SendPostRequestAsync<ICollection<VstackVmDisk>>(endpoint).ConfigureAwait(false);
+            var responce = await Client.SendGetRequestAsync<ICollection<VstackVmDisk>>(endpoint).ConfigureAwait(false);
             return responce?.Data;
         }
 
@@ -185,7 +185,7 @@ namespace Serverspace.OpenApi.Network
         public async Task<VstackVmDisk> GetVstackVmDisk(int vmId, int diskId)
         {
             var endpoint = string.Format(EndpointVstackVmDisk, vmId, diskId);
-            var responce = await Client.SendPostRequestAsync<VstackVmDisk>(endpoint).ConfigureAwait(false);
+            var responce = await Client.SendGetRequestAsync<VstackVmDisk>(endpoint).ConfigureAwait(false);
             return responce?.Data;
         }
 
@@ -205,7 +205,7 @@ namespace Serverspace.OpenApi.Network
         public async Task<ICollection<VstackVmNic>> GetVstackVmNics(int vmId)
         {
             var endpoint = string.Format(EndpointVstackVmNics, vmId);
-            var responce = await Client.SendPostRequestAsync<ICollection<VstackVmNic>>(endpoint).ConfigureAwait(false);
+            var responce = await Client.SendGetRequestAsync<ICollection<VstackVmNic>>(endpoint).ConfigureAwait(false);
             return responce?.Data;
         }
 
@@ -219,7 +219,7 @@ namespace Serverspace.OpenApi.Network
         public async Task<VstackVmNic> GetVstackVmNic(int vmId, int nicId)
         {
             var endpoint = string.Format(EndpointVstackVmNic, vmId, nicId);
-            var responce = await Client.SendPostRequestAsync<VstackVmNic>(endpoint).ConfigureAwait(false);
+            var responce = await Client.SendGetRequestAsync<VstackVmNic>(endpoint).ConfigureAwait(false);
             return responce?.Data;
         }
 
@@ -231,7 +231,7 @@ namespace Serverspace.OpenApi.Network
 
         public async Task<ICollection<VstackIsolatedNetwork>> GetVstackIsolatedNetworks()
         {
-            var responce = await Client.SendPostRequestAsync<ICollection<VstackIsolatedNetwork>>(EndpointVstackIsolatedNetworks).ConfigureAwait(false);
+            var responce = await Client.SendGetRequestAsync<ICollection<VstackIsolatedNetwork>>(EndpointVstackIsolatedNetworks).ConfigureAwait(false);
             return responce?.Data;
         }
 
@@ -244,7 +244,7 @@ namespace Serverspace.OpenApi.Network
         public async Task<VstackIsolatedNetwork> GetVstackIsolatedNetwork(int id)
         {
             var endpoint = string.Format(EndpointVstackIsolatedNetwork, id);
-            var responce = await Client.SendPostRequestAsync<VstackIsolatedNetwork>(endpoint).ConfigureAwait(false);
+            var responce = await Client.SendGetRequestAsync<VstackIsolatedNetwork>(endpoint).ConfigureAwait(false);
             return responce?.Data;
 
         }

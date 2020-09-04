@@ -106,21 +106,21 @@ namespace Serverspace.OpenApiTests
                 1467,
                 3,
                 4,
-                DateTime.Parse("2020-08-07T07:56:55.416Z"),
-                DateTime.Parse("2020-08-07T07:59:55.416Z"),
+                DateTime.Parse("2020-08-07T07:56:55.416Z").ToUniversalTime(),
+                DateTime.Parse("2020-08-07T07:59:55.416Z").ToUniversalTime(),
                 true);
 
             var expected = await _context.GetVstackTask(actual.Id);
 
-            Assert.AreEqual(expected.Id, expected.Id);
-            Assert.AreEqual(expected.LocationId, expected.LocationId);
-            Assert.AreEqual(expected.VmId, expected.VmId);
-            Assert.AreEqual(expected.DiskId, expected.DiskId);
-            Assert.AreEqual(expected.NetworkId, expected.NetworkId);
-            Assert.AreEqual(expected.NicId, expected.NicId);
-            Assert.AreEqual(expected.Created, expected.Created);
-            Assert.AreEqual(expected.Complted, expected.Complted);
-            Assert.AreEqual(expected.IsCompleted, expected.IsCompleted);
+            Assert.AreEqual(expected.Id, actual.Id);
+            Assert.AreEqual(expected.LocationId, actual.LocationId);
+            Assert.AreEqual(expected.VmId, actual.VmId);
+            Assert.AreEqual(expected.DiskId, actual.DiskId);
+            Assert.AreEqual(expected.NetworkId, actual.NetworkId);
+            Assert.AreEqual(expected.NicId, actual.NicId);
+            Assert.AreEqual(expected.Created, actual.Created);
+            Assert.AreEqual(expected.Complted, actual.Complted);
+            Assert.AreEqual(expected.IsCompleted, actual.IsCompleted);
         }
 
         [Test]
@@ -562,7 +562,7 @@ namespace Serverspace.OpenApiTests
 
             var actual = new VstackTaskResult(593208);
 
-            var createVstackIsolatedNetwork = new CreateVstackIsolatedNetwork(1, "1", "1", "1", "1");
+            var createVstackIsolatedNetwork = new CreateVstackIsolatedNetwork(1, "1", "1", "1", 1);
             var expected = await _context.CreateVstackIsolatedNetwork(createVstackIsolatedNetwork);
 
             Assert.AreEqual(expected.TaskId, actual.TaskId);
