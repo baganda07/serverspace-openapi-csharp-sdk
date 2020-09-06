@@ -76,7 +76,7 @@ namespace Serverspace.OpenApi.Network
             await Client.SendDeleteRequestAsync(endpoint).ConfigureAwait(false);
         }
 
-        public async Task<VstackTask> GetVstackTask(int id)
+        public async Task<VstackTask> GetVstackTask(string id)
         {
             var endpoint = string.Format(EndpointVstackTask, id);
             var responce = await Client.SendGetRequestAsync<VstackTask>(endpoint).ConfigureAwait(false);
@@ -113,7 +113,7 @@ namespace Serverspace.OpenApi.Network
             return responce?.Data;
         }
 
-        public async Task<VstackVm> GetVstackVm(int id)
+        public async Task<VstackVm> GetVstackVm(string id)
         {
             var endpoint = string.Format(EndpointVstackVm, id);
             var responce = await Client.SendGetRequestAsync<VstackVm>(endpoint).ConfigureAwait(false);
@@ -127,7 +127,7 @@ namespace Serverspace.OpenApi.Network
             return responce?.Data;
         }
 
-        public async Task DeleteVstackVm(int id)
+        public async Task DeleteVstackVm(string id)
         {
             var endpoint = string.Format(EndpointVstackVm, id);
             await Client.SendDeleteRequestAsync(endpoint).ConfigureAwait(false);

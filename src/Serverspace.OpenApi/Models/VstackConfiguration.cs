@@ -6,7 +6,7 @@ namespace Serverspace.OpenApi.Models
     {
         public int Id { get; }
 
-        [JsonProperty("vstack_location_id")]
+        [JsonProperty("location_id")]
         public int LocationId { get; }
 
         [JsonProperty("os_family_id")]

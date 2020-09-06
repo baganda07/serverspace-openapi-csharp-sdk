@@ -3,6 +3,7 @@ using Serverspace.OpenApi.Exceptions;
 using Serverspace.OpenApi.Models;
 using Serverspace.OpenApi.Network;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace FunWithServerspaceOpenApiSdk
             // need to delete
             SshKey createdSshKey = null;
             VstackIsolatedNetwork isolatedNetwork = null;
-
+            VstackVm vm = null;
 
             Console.WriteLine("Enter api key");
             string apiKey = Console.ReadLine();
@@ -30,11 +31,31 @@ namespace FunWithServerspaceOpenApiSdk
                 createdSshKey = await CreateSshKey(client);
                 await ShowSshKey(client, createdSshKey.Id);
 
+                await ShowVms(client);
+                vm = await CreateVm(client, createdSshKey);
+                //await ShowVm(client, vm.Id);
+                //await VmPowerOff(client, vm.Id);
+                //await VmPowerOn(client, vm.Id);
+                //await VmShutdown(client, vm.Id);
+                //await VmPowerOn(client, vm.Id);
+                //await VmReboot(client, vm.Id);
+                //await VmRestart(client, vm.Id);
+                //await VmChangeConfig(client, vm.Id);
 
-                await ShowIsolatedNetworks(client);
-                isolatedNetwork = await CreateIsolatedNetworks(client);
-                await EditIsolatedNetwork(client, isolatedNetwork);
-                isolatedNetwork = await CreateIsolatedNetworks(client);
+                //await ShowDisks(client, vm.Id);
+                //VstackVmDisk disk =  await AddDisk(client, vm.Id);
+                //await ChangeDisk(client, vm.Id, disk);
+                //await ShowDisks(client, vm.Id);
+                //await DeleteDisk(client, vm.Id, disk.Id);
+
+
+
+
+
+                //await ShowIsolatedNetworks(client);
+                //isolatedNetwork = await CreateIsolatedNetworks(client);
+                //await EditIsolatedNetwork(client, isolatedNetwork);
+                //isolatedNetwork = await CreateIsolatedNetworks(client);
 
             }
             catch (Exception ex)
@@ -60,6 +81,86 @@ namespace FunWithServerspaceOpenApiSdk
                 ShowException(ex);
             }
 
+            try
+            {
+                await DeleteVm(client, vm);
+            }
+            catch (Exception ex)
+            {
+                ShowException(ex);
+            }
+
+        }
+
+        private static async Task DeleteVm(ClientBetta client, VstackVm vm)
+        {
+            if (vm == null)
+                return;
+
+            await client.Context.DeleteVstackVm(vm.Id);
+
+            Console.WriteLine($"vm {vm.Name} - DELETED");
+        }
+
+        private static async Task<VstackVm> CreateVm(ClientBetta client, SshKey createdSshKey)
+        {
+            var locations = await client.Context.GetVstackLocations();
+            var location = locations.First(x => x.TechTitle == "am2");
+
+            var images = await client.Context.GetVstackImages();
+            var image = images.First(x => x.LocationId == location.Id & x.Name == "Ubuntu");
+
+            var configurations = await client.Context.GetVstackConfigurations();
+            var configuration = configurations.Where(x => x.LocationId == image.LocationId && x.OsFamily == image.Name).OrderBy(x => x.Price).First();
+
+            var jobResult = await client.Context.CreateVstackVm(new CreateVstackVm(
+                configurationId: configuration.Id,
+                imageId: image.Id,
+                name: "created-from-api",
+                new List<int>() { createdSshKey.Id }
+                ));
+
+            VstackTask job = null;
+            Console.Write($"Job id {jobResult.TaskId} started: ");
+            do
+            {
+                Console.Write(".");
+                Thread.Sleep(new TimeSpan(0, 0, 1));
+
+                job = await client.Context.GetVstackTask(jobResult.TaskId);
+            } while (job.IsCompleted == false);
+
+            Console.WriteLine();
+            Console.WriteLine($"Job id {jobResult.TaskId} completed");
+
+            var vm = await client.Context.GetVstackVm(job.VmId);
+
+
+            Console.WriteLine($"vm name: {vm.Name} - CREATED");
+            return vm;
+        }
+
+        private static async Task ShowVms(ClientBetta client)
+        {
+            var vms = (await client.Context.GetVstackVms()).ToList();
+            Console.Write($"You have {vms.Count} vms");
+            if (vms.Count > 0)
+            {
+                for (int i = 0; i < vms.Count; i++)
+                {
+                    var vm = vms[i];
+                    // first record
+                    if (i == 0)
+                    {
+                        Console.Write($": {vm.Name}");
+                        continue;
+                    }
+
+                    Console.Write($", {vm.Name}");
+
+                }
+                Console.WriteLine();
+            }
         }
 
         private static async Task DeleteIsolatedNetwork(ClientBetta client, VstackIsolatedNetwork isolatedNetwork)

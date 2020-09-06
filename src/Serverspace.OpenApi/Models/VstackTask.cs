@@ -5,7 +5,7 @@ namespace Serverspace.OpenApi.Models
 {
     public class VstackTask
     {
-        public int Id { get; }
+        public string Id { get; }
 
         [JsonProperty("location_id")]
         public int LocationId { get; }
@@ -14,7 +14,7 @@ namespace Serverspace.OpenApi.Models
         public int NetworkId { get; }
 
         [JsonProperty("vm_id")]
-        public int VmId { get; }
+        public string VmId { get; }
 
         [JsonProperty("disk_id")]
         public int DiskId { get; }
@@ -32,7 +32,7 @@ namespace Serverspace.OpenApi.Models
         public bool IsCompleted { get; }
 
 
-        public VstackTask(int id, int locationId, int networkId, int vmId, int diskId, int nicId, DateTime created, DateTime complted, bool isCompleted)
+        public VstackTask(string id, int locationId, int networkId, string vmId, int diskId, int nicId, DateTime created, DateTime complted, bool isCompleted)
         {
             Id = id;
             LocationId = locationId;

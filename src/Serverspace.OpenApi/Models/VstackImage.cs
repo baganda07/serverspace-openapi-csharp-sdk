@@ -4,7 +4,7 @@ namespace Serverspace.OpenApi.Models
 {
     public class VstackImage
     {
-        public int Id { get; }
+        public string Id { get; }
 
         [JsonProperty("location_id")]
         public int LocationId { get; }
@@ -22,7 +22,7 @@ namespace Serverspace.OpenApi.Models
         public bool AllowSshKeys { get; }
 
 
-        public VstackImage(int id, int locationId, string name, string version, string architecture, bool allowSshKeys)
+        public VstackImage(string id, int locationId, string name, string version, string architecture, bool allowSshKeys)
         {
             Id = id;
             LocationId = locationId;

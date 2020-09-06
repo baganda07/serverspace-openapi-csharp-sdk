@@ -6,7 +6,7 @@ namespace Serverspace.OpenApi.Models
 {
     public class VstackVm
     {
-        public int Id { get; }
+        public string Id { get; }
 
         [JsonProperty("location_id")]
         public int LocationId { get; }
@@ -15,7 +15,7 @@ namespace Serverspace.OpenApi.Models
         public int ConfigurationId { get; }
 
         [JsonProperty("image_id")]
-        public int ImageId { get; }
+        public string ImageId { get; }
 
         public string  Name { get; }
 
@@ -36,7 +36,7 @@ namespace Serverspace.OpenApi.Models
         [JsonProperty("created_at")]
         public DateTime Created { get; }
 
-        public VstackVm(int id, int locationId, int configurationId, int imageId, string name, bool isPowerOn, string ip, string login, string password, IReadOnlyCollection<int> sshKeyIds, string state, DateTime created)
+        public VstackVm(string id, int locationId, int configurationId, string imageId, string name, bool isPowerOn, string ip, string login, string password, IReadOnlyCollection<int> sshKeyIds, string state, DateTime created)
         {
             Id = id;
             LocationId = locationId;

@@ -100,10 +100,10 @@ namespace Serverspace.OpenApiTests
             var _context = new FakeClient(httpClient).Context;
 
             var actual = new VstackTask(
-                1234567,
+                "1234567",
                 1,
                 2,
-                1467,
+                "1467",
                 3,
                 4,
                 DateTime.Parse("2020-08-07T07:56:55.416Z").ToUniversalTime(),
@@ -187,8 +187,8 @@ namespace Serverspace.OpenApiTests
 
             var actual = new List<VstackImage>()
             {
-                new VstackImage(1,1,"Ubuntu","16.0","X64",true),
-                new VstackImage(2,3,"CentOs","18.0","X64",false),
+                new VstackImage("1",1,"Ubuntu","16.0","X64",true),
+                new VstackImage("2",3,"CentOs","18.0","X64",false),
             };
 
             var expected = await _context.GetVstackImages();
@@ -215,8 +215,8 @@ namespace Serverspace.OpenApiTests
 
             var actual = new List<VstackVm>()
             {
-                new VstackVm(9384,1,1,3,"Server 1",true,"188.227.59.91","root","asdsadasd",new List<int>(){12, 5},"Active",DateTime.Parse("2020-08-07T12:29:37.311Z").ToUniversalTime()),
-                new VstackVm(9385,6,2,5,"Server 2",false,"188.227.59.92","admin","12334sad",null,"New",DateTime.Parse("2020-08-07T14:35:38.311Z").ToUniversalTime()),
+                new VstackVm("9384",1,1,"3","Server 1",true,"188.227.59.91","root","asdsadasd",new List<int>(){12, 5},"Active",DateTime.Parse("2020-08-07T12:29:37.311Z").ToUniversalTime()),
+                new VstackVm("9385",6,2,"5","Server 2",false,"188.227.59.92","admin","12334sad",null,"New",DateTime.Parse("2020-08-07T14:35:38.311Z").ToUniversalTime()),
             };
 
             var expected = await _context.GetVstackVms();
@@ -263,9 +263,9 @@ namespace Serverspace.OpenApiTests
             var httpClient = new HttpClient(new Mock.MockHttpMessageHandler("VstackVm.Create.json", HttpStatusCode.OK));
             var _context = new FakeClient(httpClient).Context;
 
-            var actual = new VstackTaskResult(593208);
+            var actual = new VstackTaskResult("593208");
             
-            var createVstackVm = new CreateVstackVm(1, 1, "test", null);
+            var createVstackVm = new CreateVstackVm(1, "1", "test", null);
             var expected = await _context.CreateVstackVm(createVstackVm);
 
             Assert.AreEqual(expected.TaskId, actual.TaskId);
@@ -277,7 +277,7 @@ namespace Serverspace.OpenApiTests
             var httpClient = new HttpClient(new Mock.MockHttpMessageHandler("VstackVm.Get.json", HttpStatusCode.OK));
             var _context = new FakeClient(httpClient).Context;
 
-            var actual = new VstackVm(9384, 1, 1, 3, "Server 1", true, "188.227.59.91", "root", "asdsadasd", new List<int>() { 12, 5 }, "Active", DateTime.Parse("2020-08-07T12:29:37.311Z").ToUniversalTime());
+            var actual = new VstackVm("9384", 1, 1, "3", "Server 1", true, "188.227.59.91", "root", "asdsadasd", new List<int>() { 12, 5 }, "Active", DateTime.Parse("2020-08-07T12:29:37.311Z").ToUniversalTime());
 
             var expected = await _context.GetVstackVm(actual.Id);
 
@@ -314,7 +314,7 @@ namespace Serverspace.OpenApiTests
             var httpClient = new HttpClient(new Mock.MockHttpMessageHandler("VstackVm.Edit.json", HttpStatusCode.OK));
             var _context = new FakeClient(httpClient).Context;
 
-            var actual = new VstackTaskResult(593208);
+            var actual = new VstackTaskResult("593208");
 
             var expected = await _context.EditVstackVm(1, new EditVstackVm(1));
 
@@ -327,7 +327,7 @@ namespace Serverspace.OpenApiTests
             var httpClient = new HttpClient(new Mock.MockHttpMessageHandler("VstackVm.Action.PowerOn.json", HttpStatusCode.OK));
             var _context = new FakeClient(httpClient).Context;
 
-            var actual = new VstackTaskResult(22522525);
+            var actual = new VstackTaskResult("22522525");
 
             var expected = await _context.PowerOnVstackVm(1);
 
@@ -340,7 +340,7 @@ namespace Serverspace.OpenApiTests
             var httpClient = new HttpClient(new Mock.MockHttpMessageHandler("VstackVm.Action.Shutdown.json", HttpStatusCode.OK));
             var _context = new FakeClient(httpClient).Context;
 
-            var actual = new VstackTaskResult(112581);
+            var actual = new VstackTaskResult("112581");
 
             var expected = await _context.ShutdownVstackVm(1);
 
@@ -353,7 +353,7 @@ namespace Serverspace.OpenApiTests
             var httpClient = new HttpClient(new Mock.MockHttpMessageHandler("VstackVm.Action.ShutdownViaOs.json", HttpStatusCode.OK));
             var _context = new FakeClient(httpClient).Context;
 
-            var actual = new VstackTaskResult(779118);
+            var actual = new VstackTaskResult("779118");
 
             var expected = await _context.ShutdownViaOsVstackVm(1);
 
@@ -366,7 +366,7 @@ namespace Serverspace.OpenApiTests
             var httpClient = new HttpClient(new Mock.MockHttpMessageHandler("VstackVm.Action.Reboot.json", HttpStatusCode.OK));
             var _context = new FakeClient(httpClient).Context;
 
-            var actual = new VstackTaskResult(155);
+            var actual = new VstackTaskResult("155");
 
             var expected = await _context.RebootVstackVm(1);
 
@@ -379,7 +379,7 @@ namespace Serverspace.OpenApiTests
             var httpClient = new HttpClient(new Mock.MockHttpMessageHandler("VstackVm.Action.Reset.json", HttpStatusCode.OK));
             var _context = new FakeClient(httpClient).Context;
 
-            var actual = new VstackTaskResult(98823142);
+            var actual = new VstackTaskResult("98823142");
 
             var expected = await _context.ResetVstackVm(1);
 
@@ -422,7 +422,7 @@ namespace Serverspace.OpenApiTests
             var httpClient = new HttpClient(new Mock.MockHttpMessageHandler("VstackVm.Disk.Create.json", HttpStatusCode.OK));
             var _context = new FakeClient(httpClient).Context;
 
-            var actual = new VstackTaskResult(593208);
+            var actual = new VstackTaskResult("593208");
 
             var createVstackDiskVm = new CreateVstackVmDisk("test",1024);
             var expected = await _context.CreateVstackVmDisk(1, createVstackDiskVm);
@@ -454,7 +454,7 @@ namespace Serverspace.OpenApiTests
             var httpClient = new HttpClient(new Mock.MockHttpMessageHandler("VstackVm.Disk.Edit.json", HttpStatusCode.OK));
             var _context = new FakeClient(httpClient).Context;
 
-            var actual = new VstackTaskResult(593208);
+            var actual = new VstackTaskResult("593208");
 
             var expected = await _context.EditVstackVmDisk(1,1, new EditVstackVmDisk(1024));
 
@@ -496,7 +496,7 @@ namespace Serverspace.OpenApiTests
             var httpClient = new HttpClient(new Mock.MockHttpMessageHandler("VstackVm.Nic.Create.json", HttpStatusCode.OK));
             var _context = new FakeClient(httpClient).Context;
 
-            var actual = new VstackTaskResult(593208);
+            var actual = new VstackTaskResult("593208");
 
             var createVstackVmNic = new CreateVstackVmNic(1);
             var expected = await _context.CreateVstackVmNic(1, createVstackVmNic);
@@ -560,7 +560,7 @@ namespace Serverspace.OpenApiTests
             var httpClient = new HttpClient(new Mock.MockHttpMessageHandler("VstackIsolatedNetwork.Create.json", HttpStatusCode.OK));
             var _context = new FakeClient(httpClient).Context;
 
-            var actual = new VstackTaskResult(593208);
+            var actual = new VstackTaskResult("593208");
 
             var createVstackIsolatedNetwork = new CreateVstackIsolatedNetwork(1, "1", "1", "1", 1);
             var expected = await _context.CreateVstackIsolatedNetwork(createVstackIsolatedNetwork);
